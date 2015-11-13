@@ -17,11 +17,12 @@
  * For further information, please contact us at sharemind@cyber.ee.
  */
 
-#ifndef MOD_SPDZ_FRESCO_EMU_SHARED3PPDPI_H
-#define MOD_SPDZ_FRESCO_EMU_SHARED3PPDPI_H
+#ifndef MOD_ABY_EMU_SHARED3PPDPI_H
+#define MOD_ABY_EMU_SHARED3PPDPI_H
 
-#include <sharemind/libemulator_protocols/ShareVector.h>
-#include <sharemind/libemulator_protocols/ValueHeap.h>
+#include <sharemind/ShareVector.h>
+#include <sharemind/SharedValueHeap.h>
+#include <sharemind/visibility.h>
 #include "AbyPD.h"
 
 namespace sharemind {
@@ -30,7 +31,7 @@ class ExecutionModelEvaluator;
 class ExecutionProfiler;
 class AbyConfiguration;
 
-class __attribute__ ((visibility("internal"))) AbyPDPI {
+class SHAREMIND_VISIBILITY_INTERNAL AbyPDPI {
 
 public: /* Methods: */
 
@@ -61,12 +62,12 @@ public: /* Methods: */
     }
 
     template <typename T>
-    inline bool registerVector(share_vec<T> * vec) {
+    inline bool registerVector(ShareVec<T> * vec) {
         return m_heap.insert(vec);
     }
 
     template <typename T>
-    inline bool freeRegisteredVector(share_vec<T> * vec) {
+    inline bool freeRegisteredVector(ShareVec<T> * vec) {
         return m_heap.erase(vec);
     }
 
@@ -78,10 +79,10 @@ private: /* Fields: */
     ExecutionModelEvaluator & m_modelEvaluator;
     ExecutionProfiler & m_profiler;
 
-    value_heap m_heap;
+    SharedValueHeap m_heap;
 
 }; /* class AbyPDPI { */
 
 } /* namespace sharemind { */
 
-#endif /* MOD_SPDZ_FRESCO_EMU_SHARED3PPDPI_H */
+#endif /* MOD_ABY_EMU_SHARED3PPDPI_H */

@@ -17,11 +17,12 @@
  * For further information, please contact us at sharemind@cyber.ee.
  */
 
-#ifndef MOD_SPDZ_FRESCO_EMU_SHARED3PPD_H
-#define MOD_SPDZ_FRESCO_EMU_SHARED3PPD_H
+#ifndef MOD_ABY_EMU_SHARED3PPD_H
+#define MOD_ABY_EMU_SHARED3PPD_H
 
 #include <memory>
 #include <sharemind/Exception.h>
+#include <sharemind/visibility.h>
 #include "AbyConfiguration.h"
 
 
@@ -31,7 +32,7 @@ class ExecutionProfiler;
 class ExecutionModelEvaluator;
 class AbyModule;
 
-class __attribute__ ((visibility("internal"))) AbyPD {
+class SHAREMIND_VISIBILITY_INTERNAL AbyPD {
 
 public: /* Types: */
 
@@ -83,4 +84,4 @@ private: /* Fields: */
 
 } /* namespace sharemind { */
 
-#endif /* MOD_SPDZ_FRESCO_EMU_SHARED3PPD_H */
+#endif /* MOD_ABY_EMU_SHARED3PPD_H */

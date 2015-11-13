@@ -17,11 +17,12 @@
  * For further information, please contact us at sharemind@cyber.ee.
  */
 
-#ifndef MOD_SPDZ_FRESCO_EMU_VALUETRAITS_H
-#define MOD_SPDZ_FRESCO_EMU_VALUETRAITS_H
+#ifndef MOD_ABY_EMU_VALUETRAITS_H
+#define MOD_ABY_EMU_VALUETRAITS_H
 
 #include <cstdint>
-#include <sharemind/libemulator_protocols/ValueTraits.h>
+#include <sharemind/ValueTraits.h>
+#include <sharemind/visibility.h>
 #include <type_traits>
 
 
@@ -30,20 +31,20 @@ namespace sharemind {
 /*
  * Hierarchy of types.
  */
-struct __attribute__ ((visibility("internal"))) numeric_value_tag : public any_value_tag { };
-struct __attribute__ ((visibility("internal"))) unsigned_value_tag : public numeric_value_tag { };
+struct SHAREMIND_VISIBILITY_INTERNAL numeric_value_tag : public any_value_tag { };
+struct SHAREMIND_VISIBILITY_INTERNAL unsigned_value_tag : public numeric_value_tag { };
 
 template <typename T>
-struct __attribute__ ((visibility("internal"))) is_unsigned_value_tag :
-    std::is_base_of<unsigned_value_tag, typename value_traits<T>::value_category>
+struct SHAREMIND_VISIBILITY_INTERNAL is_unsigned_value_tag :
+    std::is_base_of<unsigned_value_tag, typename ValueTraits<T>::value_category>
 { };
 
 template <typename T>
-struct __attribute__ ((visibility("internal"))) is_integral_value_tag :
-    std::is_base_of<numeric_value_tag, typename value_traits<T>::value_category>
+struct SHAREMIND_VISIBILITY_INTERNAL is_integral_value_tag :
+    std::is_base_of<numeric_value_tag, typename ValueTraits<T>::value_category>
 { };
 
-struct __attribute__ ((visibility("internal"))) aby_uint8_t {
+struct SHAREMIND_VISIBILITY_INTERNAL aby_uint8_t {
     using value_category = unsigned_value_tag;
     using share_type = uint8_t;
     using public_type = uint8_t;
@@ -52,7 +53,7 @@ struct __attribute__ ((visibility("internal"))) aby_uint8_t {
     static constexpr size_t log_of_bits = 3u;
 };
 
-struct __attribute__ ((visibility("internal"))) aby_uint16_t {
+struct SHAREMIND_VISIBILITY_INTERNAL aby_uint16_t {
     using value_category = unsigned_value_tag;
     using share_type = uint16_t;
     using public_type = uint16_t;
@@ -61,7 +62,7 @@ struct __attribute__ ((visibility("internal"))) aby_uint16_t {
     static constexpr size_t log_of_bits = 4u;
 };
 
-struct __attribute__ ((visibility("internal"))) aby_uint32_t {
+struct SHAREMIND_VISIBILITY_INTERNAL aby_uint32_t {
     using value_category = unsigned_value_tag;
     using share_type = uint32_t;
     using public_type = uint32_t;
@@ -70,7 +71,7 @@ struct __attribute__ ((visibility("internal"))) aby_uint32_t {
     static constexpr size_t log_of_bits = 5u;
 };
 
-struct __attribute__ ((visibility("internal"))) aby_uint64_t {
+struct SHAREMIND_VISIBILITY_INTERNAL aby_uint64_t {
     using value_category = unsigned_value_tag;
     using share_type = uint64_t;
     using public_type = uint64_t;
@@ -81,4 +82,4 @@ struct __attribute__ ((visibility("internal"))) aby_uint64_t {
 
 } /* namespace sharemind */
 
-#endif /* MOD_SPDZ_FRESCO_EMU_VALUETRAITS_H */
+#endif /* MOD_ABY_EMU_VALUETRAITS_H */

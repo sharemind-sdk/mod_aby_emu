@@ -17,10 +17,11 @@
  * For further information, please contact us at sharemind@cyber.ee.
  */
 
-#ifndef MOD_SPDZ_FRESCO_EMU_SHARED3PMODULE_H
-#define MOD_SPDZ_FRESCO_EMU_SHARED3PMODULE_H
+#ifndef MOD_ABY_EMU_SHARED3PMODULE_H
+#define MOD_ABY_EMU_SHARED3PMODULE_H
 
 #include <memory>
+#include <sharemind/visibility.h>
 
 
 namespace LogHard { class Logger; }
@@ -29,7 +30,7 @@ namespace sharemind {
 
 class ExecutionProfiler;
 
-class __attribute__ ((visibility("internal"))) AbyModule {
+class SHAREMIND_VISIBILITY_INTERNAL AbyModule {
 
 public: /* Methods: */
 
@@ -54,4 +55,4 @@ private:
 
 } /* namespace sharemind { */
 
-#endif /* MOD_SPDZ_FRESCO_EMU_SHARED3PMODULE_H */
+#endif /* MOD_ABY_EMU_SHARED3PMODULE_H */
