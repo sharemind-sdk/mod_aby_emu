@@ -81,7 +81,7 @@ inline uint64_t getStack<aby_uint64_t>(const SharemindCodeBlock & arg)
         SharemindCodeBlock * retVal, \
         SharemindModuleApi0x1SyscallContext * c) \
     { \
-        return __VA_ARGS__((#name), args, argc, refs, crefs, retVal, c); \
+        return __VA_ARGS__(("aby::" #name), args, argc, refs, crefs, retVal, c); \
     }
 
 #define NAMED_SYSCALL_DEFINITION(signature,fptr) \
@@ -96,7 +96,7 @@ inline uint64_t getStack<aby_uint64_t>(const SharemindCodeBlock & arg)
        SharemindModuleApi0x1SyscallContext * c) \
             -> SharemindModuleApi0x1Error \
     { \
-        return __VA_ARGS__((#name), args, argc, refs, crefs, retVal, c); \
+        return __VA_ARGS__(("aby::" #name), args, argc, refs, crefs, retVal, c); \
     };
 
 #define NAMED_SYSCALL_DEFINITION(signature,fptr) \
