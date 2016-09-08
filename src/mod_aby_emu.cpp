@@ -541,14 +541,15 @@ SHAREMIND_MODULE_API_0x1_PD_STARTUP(aby_emu_startup, w) {
     assert(w->moduleHandle);
     assert(w->conf);
     assert(w->conf->pd_name);
-    assert(w->conf->pd_conf_string);
 
     sharemind::AbyModule * const m =
         static_cast<sharemind::AbyModule*>(w->moduleHandle);
 
     try {
         w->pdHandle = new AbyPD(w->conf->pd_name,
-                                     w->conf->pd_conf_string,
+                                     w->conf->pd_conf_string
+                                     ? w->conf->pd_conf_string
+                                     : "",
                                      *m);
         return SHAREMIND_MODULE_API_0x1_OK;
     } catch (const AbyPD::ConfigurationException & e) {
