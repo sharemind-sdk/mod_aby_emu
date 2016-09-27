@@ -112,7 +112,7 @@ SHAREMIND_MODULE_API_0x1_DEINITIALIZER(c) {
     assert(c);
     assert(c->moduleHandle);
 
-    static_assert(std::is_nothrow_destructible<sharemind::AbyModule>::value,
+    static_assert(sharemind::is_nothrow_destructible<sharemind::AbyModule>::value,
             "AbyModule is not noexcept!");
     delete static_cast<sharemind::AbyModule *>(c->moduleHandle);
     #ifndef NDEBUG
@@ -567,7 +567,7 @@ SHAREMIND_MODULE_API_0x1_PD_SHUTDOWN(aby_emu_shutdown, w) {
     assert(w->pdHandle);
     assert(w->moduleHandle);
 
-    static_assert(std::is_nothrow_destructible<sharemind::AbyPD>::value,
+    static_assert(sharemind::is_nothrow_destructible<sharemind::AbyPD>::value,
             "AbyPD is not noexcept!");
     delete static_cast<sharemind::AbyPD *>(w->pdHandle);
     #ifndef NDEBUG
@@ -596,7 +596,7 @@ SHAREMIND_MODULE_API_0x1_PDPI_SHUTDOWN(aby_emu_PDPI_shutdown, w) {
     assert(w->pdHandle);
     assert(w->pdProcessHandle);
 
-    static_assert(std::is_nothrow_destructible<sharemind::AbyPDPI>::value,
+    static_assert(sharemind::is_nothrow_destructible<sharemind::AbyPDPI>::value,
             "AbyPDPI is not noexcept");
     delete static_cast<sharemind::AbyPDPI *>(w->pdProcessHandle);
     #ifndef NDEBUG
