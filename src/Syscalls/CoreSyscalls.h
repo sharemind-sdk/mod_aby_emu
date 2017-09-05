@@ -20,7 +20,7 @@
 #ifndef MOD_ABY_EMU_SYSCALLS_CORESYSCALLS_H
 #define MOD_ABY_EMU_SYSCALLS_CORESYSCALLS_H
 
-#include <sharemind/libmodapi/api_0x1.h>
+#include <sharemind/module-apis/api_0x1.h>
 #include <sharemind/ShareVector.h>
 #include <sharemind/VmVector.h>
 #include "Common.h"
