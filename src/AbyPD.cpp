@@ -25,6 +25,13 @@
 
 namespace sharemind {
 
+SHAREMIND_DEFINE_EXCEPTION_NOINLINE(sharemind::Exception, AbyPD::, Exception);
+SHAREMIND_DEFINE_EXCEPTION_CONST_MSG_NOINLINE(
+        Exception,
+        AbyPD::,
+        ConfigurationException,
+        "Error in protection domain configuration!");
+
 AbyPD::AbyPD(const std::string & pdName,
                        const std::string & pdConfiguration,
                        AbyModule & module)
