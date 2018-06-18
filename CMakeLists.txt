@@ -118,7 +118,7 @@ SharemindAddComponentPackage("debug"
     DESCRIPTION "Sharemind ABY emulation module debug symbols"
     DEB_SECTION "debug"
     DEB_DEPENDS
-        "libsharemind-mod-aby-emu (= ${SharemindModAbyEmu_VERSION})"
+        "libsharemind-mod-aby-emu (= ${SharemindModAbyEmu_DEB_lib_PACKAGE_VERSION})"
 )
 IF(NOT (CMAKE_BUILD_TYPE STREQUAL "Release"))
     SharemindAddComponentPackage("debugconf"
@@ -126,7 +126,7 @@ IF(NOT (CMAKE_BUILD_TYPE STREQUAL "Release"))
         DESCRIPTION "Sharemind ABY emulation module debug configuration"
         DEB_SECTION "debug"
         DEB_DEPENDS
-            "libsharemind-mod-aby-emu (= ${SharemindModAbyEmu_VERSION})"
+            "libsharemind-mod-aby-emu (= ${SharemindModAbyEmu_DEB_lib_PACKAGE_VERSION})"
     )
 ENDIF()
 SharemindPackagingFinalize()
