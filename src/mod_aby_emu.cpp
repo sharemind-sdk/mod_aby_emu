@@ -19,7 +19,6 @@
 
 #include <cassert>
 #include <LogHard/Logger.h>
-#include <sharemind/compiler-support/GccIsNothrowDestructible.h>
 #include <sharemind/ExecutionProfiler.h>
 #include <sharemind/libemulator_protocols/Binary.h>
 #include <sharemind/libemulator_protocols/Nullary.h>
@@ -112,8 +111,8 @@ SHAREMIND_MODULE_API_0x1_DEINITIALIZER(c) {
     assert(c);
     assert(c->moduleHandle);
 
-    static_assert(sharemind::is_nothrow_destructible<sharemind::AbyModule>::value,
-            "AbyModule is not noexcept!");
+    static_assert(std::is_nothrow_destructible<sharemind::AbyModule>::value,
+                  "");
     delete static_cast<sharemind::AbyModule *>(c->moduleHandle);
     #ifndef NDEBUG
     c->moduleHandle = nullptr; // Not needed, but may help debugging.
@@ -567,8 +566,7 @@ SHAREMIND_MODULE_API_0x1_PD_SHUTDOWN(aby_emu_shutdown, w) {
     assert(w->pdHandle);
     assert(w->moduleHandle);
 
-    static_assert(sharemind::is_nothrow_destructible<sharemind::AbyPD>::value,
-            "AbyPD is not noexcept!");
+    static_assert(std::is_nothrow_destructible<sharemind::AbyPD>::value, "");
     delete static_cast<sharemind::AbyPD *>(w->pdHandle);
     #ifndef NDEBUG
     w->pdHandle = nullptr; // Not needed, but may help debugging.
@@ -596,8 +594,7 @@ SHAREMIND_MODULE_API_0x1_PDPI_SHUTDOWN(aby_emu_PDPI_shutdown, w) {
     assert(w->pdHandle);
     assert(w->pdProcessHandle);
 
-    static_assert(sharemind::is_nothrow_destructible<sharemind::AbyPDPI>::value,
-            "AbyPDPI is not noexcept");
+    static_assert(std::is_nothrow_destructible<sharemind::AbyPDPI>::value, "");
     delete static_cast<sharemind::AbyPDPI *>(w->pdProcessHandle);
     #ifndef NDEBUG
     w->pdProcessHandle = nullptr; // Not needed, but may help debugging.
