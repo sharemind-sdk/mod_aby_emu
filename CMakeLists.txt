@@ -77,7 +77,6 @@ SharemindAddSharedLibrary("sharemind_mod_aby_emu"
         ${SharemindLibExecutionProfiler_DEFINITIONS}
         ${SharemindPdkHeaders_DEFINITIONS}
     LINK_LIBRARIES
-        ${CRYPTOPP_LIBRARIES}
         ${LogHard_LIBRARIES}
         ${SharemindCHeaders_LIBRARIES}
         ${SharemindCxxHeaders_LIBRARIES}
@@ -104,7 +103,6 @@ SharemindAddComponentPackage("lib"
     DESCRIPTION "Sharemind ABY emulation module"
     DEB_SECTION "libs"
     DEB_DEPENDS
-        "libcrypto++6"
         "libloghard (>= 0.3.0)"
         "libsharemind-executionmodelevaluator (>= 0.2.0)"
         "libsharemind-executionprofiler (>= 0.2.0)"
