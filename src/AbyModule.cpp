@@ -18,16 +18,13 @@
  */
 
 #include <LogHard/Logger.h>
-#include <sharemind/ExecutionProfiler.h>
 #include "AbyModule.h"
 
 
 namespace sharemind {
 
-AbyModule::AbyModule(const LogHard::Logger & logger,
-                               ExecutionProfiler & profiler)
+AbyModule::AbyModule(const LogHard::Logger & logger)
     : m_logger(logger)
-    , m_profiler(profiler)
 { }
 
 } /* namespace sharemind { */

@@ -18,7 +18,6 @@
  */
 
 #include <sharemind/ExecutionModelEvaluator.h>
-#include <sharemind/ExecutionProfiler.h>
 #include "AbyModule.h"
 #include "AbyPD.h"
 
@@ -37,7 +36,6 @@ AbyPD::AbyPD(const std::string & pdName,
                        AbyModule & module)
     : m_configuration(module.logger())
     , m_name(pdName)
-    , m_profiler(module.profiler())
 {
     if (!m_configuration.load(pdConfiguration))
         throw ConfigurationException();
