@@ -99,6 +99,11 @@ IF(NOT (CMAKE_BUILD_TYPE STREQUAL "Release"))
             COMPONENT "debugconf")
 ENDIF()
 
+# Configuration files:
+INSTALL(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/packaging/configs/sharemind/"
+        DESTINATION "/etc/sharemind/"
+        COMPONENT "lib"
+        EXCLUDE_FROM_ALL)
 
 # Packaging:
 SharemindSetupPackaging()
@@ -113,6 +118,8 @@ SharemindAddComponentPackage("lib"
         "libsharemind-executionprofiler (>= 0.2.0)"
         "libstdc++6 (>= 4.8.0)"
         "libc6 (>= 2.19)"
+    DEB_EXTRA_CONTROL_FILES
+        "${CMAKE_CURRENT_SOURCE_DIR}/packaging/debian/conffiles"
 )
 SharemindAddComponentPackage("debug"
     NAME "libsharemind-mod-aby-emu-dbg"
@@ -121,13 +128,4 @@ SharemindAddComponentPackage("debug"
     DEB_DEPENDS
         "libsharemind-mod-aby-emu (= ${SharemindModAbyEmu_DEB_lib_PACKAGE_VERSION})"
 )
-IF(NOT (CMAKE_BUILD_TYPE STREQUAL "Release"))
-    SharemindAddComponentPackage("debugconf"
-        NAME "libsharemind-mod-aby-emu-debugconfiguration"
-        DESCRIPTION "Sharemind ABY emulation module debug configuration"
-        DEB_SECTION "debug"
-        DEB_DEPENDS
-            "libsharemind-mod-aby-emu (= ${SharemindModAbyEmu_DEB_lib_PACKAGE_VERSION})"
-    )
-ENDIF()
 SharemindPackagingFinalize()
