@@ -34,12 +34,10 @@ SHAREMIND_DEFINE_EXCEPTION_CONST_MSG_NOINLINE(
 AbyPD::AbyPD(const std::string & pdName,
                        const std::string & pdConfiguration,
                        AbyModule & module)
-    : m_configuration(module.logger())
+try
+    : m_configuration(pdConfiguration)
     , m_name(pdName)
 {
-    if (!m_configuration.load(pdConfiguration))
-        throw ConfigurationException();
-
     try {
         m_modelEvaluator.reset(
                 new ExecutionModelEvaluator(module.logger(),
@@ -47,6 +45,8 @@ AbyPD::AbyPD(const std::string & pdName,
     } catch (const ExecutionModelEvaluator::ConfigurationException &) {
         throw ConfigurationException();
     }
+} catch (const sharemind::Configuration::Exception &) {
+    std::throw_with_nested(ConfigurationException());
 }
 
 AbyPD::~AbyPD() noexcept = default;

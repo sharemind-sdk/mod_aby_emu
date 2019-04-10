@@ -20,6 +20,7 @@
 #ifndef MOD_ABY_EMU_SHARED3PCONFIGURATION_H
 #define MOD_ABY_EMU_SHARED3PCONFIGURATION_H
 
+#include <sharemind/libconfiguration/Configuration.h>
 #include <sharemind/visibility.h>
 #include <string>
 
@@ -28,20 +29,17 @@ namespace LogHard { class Logger; }
 
 namespace sharemind {
 
-class SHAREMIND_VISIBILITY_INTERNAL AbyConfiguration {
+class SHAREMIND_VISIBILITY_INTERNAL AbyConfiguration
+    : public Configuration {
 
 public: /* Methods: */
 
-    AbyConfiguration(const LogHard::Logger & logger);
-
-    bool load(const std::string & filename);
+    AbyConfiguration(const std::string & pdConf);
 
     const std::string & modelEvaluatorConfiguration() const noexcept
     { return m_modelEvaluatorConfiguration; }
 
 private: /* Fields: */
-
-    const LogHard::Logger & m_logger;
 
     std::string m_modelEvaluatorConfiguration;
 

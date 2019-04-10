@@ -542,8 +542,9 @@ SHAREMIND_MODULE_API_0x1_PD_STARTUP(aby_emu_startup, w) {
                                      *m);
         return SHAREMIND_MODULE_API_0x1_OK;
     } catch (const AbyPD::ConfigurationException & e) {
+        m->logger().printCurrentException<LogHard::Priority::Error>();
         m->logger().error() << "Error on protection domain '"
-            << w->conf->pd_name << "' startup: " << e.what();
+            << w->conf->pd_name << "' startup.";
         return SHAREMIND_MODULE_API_0x1_INVALID_PD_CONFIGURATION;
     } catch (...) {
         return catchModuleApiErrors ();
