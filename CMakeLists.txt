@@ -65,10 +65,6 @@ SharemindAddSharedLibrary("sharemind_mod_aby_emu"
         ${SharemindLibExecutionProfiler_INCLUDE_DIRS}
         ${SharemindModuleApis_INCLUDE_DIRS}
         ${SharemindPdkHeaders_INCLUDE_DIRS}
-    COMPILE_DEFINITIONS
-        "exprtk_disable_comments"
-        "exprtk_disable_break_continue"
-        "exprtk_disable_enhanced_features"
     LEGACY_DEFINITIONS
         ${LogHard_DEFINITIONS}
         ${SharemindCHeaders_DEFINITIONS}
