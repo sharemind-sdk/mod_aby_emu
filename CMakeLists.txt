@@ -23,18 +23,18 @@ PROJECT(SharemindModAbyEmu VERSION 1.1.3 LANGUAGES CXX)
 INCLUDE("${CMAKE_CURRENT_SOURCE_DIR}/config.local" OPTIONAL)
 INCLUDE("${CMAKE_CURRENT_BINARY_DIR}/config.local" OPTIONAL)
 
-FIND_PACKAGE(SharemindCMakeHelpers 1.4 REQUIRED)
+FIND_PACKAGE(SharemindCMakeHelpers 1.6 REQUIRED)
 
 FIND_PACKAGE(Boost 1.62 REQUIRED)
-FIND_PACKAGE(LogHard 0.3.0 REQUIRED)
-FIND_PACKAGE(SharemindCHeaders 1.1.0 REQUIRED)
-FIND_PACKAGE(SharemindCxxHeaders 0.5.0 REQUIRED)
-FIND_PACKAGE(SharemindLibConfiguration 0.2.0 REQUIRED)
-FIND_PACKAGE(SharemindLibEmulatorProtocols 0.1.1 REQUIRED)
-FIND_PACKAGE(SharemindLibExecutionModelEvaluator 0.2.0 REQUIRED)
-FIND_PACKAGE(SharemindLibExecutionProfiler 0.2.0 REQUIRED)
-FIND_PACKAGE(SharemindModuleApis 1.0.0 REQUIRED)
-FIND_PACKAGE(SharemindPdkHeaders 0.2.0 REQUIRED)
+FIND_PACKAGE(LogHard 0.5.0 REQUIRED)
+FIND_PACKAGE(SharemindCHeaders 1.3.0 REQUIRED)
+FIND_PACKAGE(SharemindCxxHeaders 0.8.0 REQUIRED)
+FIND_PACKAGE(SharemindLibConfiguration 0.5.0 REQUIRED)
+FIND_PACKAGE(SharemindLibEmulatorProtocols 0.2.0 REQUIRED)
+FIND_PACKAGE(SharemindLibExecutionModelEvaluator 0.3.0 REQUIRED)
+FIND_PACKAGE(SharemindLibExecutionProfiler 0.4.0 REQUIRED)
+FIND_PACKAGE(SharemindModuleApis 1.1.0 REQUIRED)
+FIND_PACKAGE(SharemindPdkHeaders 0.5.0 REQUIRED)
 
 
 SharemindSetCxx14CompileOptions()
@@ -49,40 +49,26 @@ FILE(GLOB_RECURSE SharemindModAbyEmu_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 FILE(GLOB_RECURSE SharemindModAbyEmu_HEADERS
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h")
-SharemindAddSharedLibrary("sharemind_mod_aby_emu"
+SharemindAddSharedLibrary(ModAbyEmu
     MODULE
+    OUTPUT_NAME "sharemind_mod_aby_emu"
     SOURCES
         ${SharemindModAbyEmu_SOURCES}
         ${SharemindModAbyEmu_HEADERS}
-    INCLUDE_DIRECTORIES
-        ${Boost_INCLUDE_DIRS}
-        ${LogHard_INCLUDE_DIRS}
-        ${SharemindCHeaders_INCLUDE_DIRS}
-        ${SharemindCxxHeaders_INCLUDE_DIRS}
-        ${SharemindLibConfiguration_INCLUDE_DIRS}
-        ${SharemindLibEmulatorProtocols_INCLUDE_DIRS}
-        ${SharemindLibExecutionModelEvaluator_INCLUDE_DIRS}
-        ${SharemindLibExecutionProfiler_INCLUDE_DIRS}
-        ${SharemindModuleApis_INCLUDE_DIRS}
-        ${SharemindPdkHeaders_INCLUDE_DIRS}
-    LEGACY_DEFINITIONS
-        ${LogHard_DEFINITIONS}
-        ${SharemindCHeaders_DEFINITIONS}
-        ${SharemindCxxHeaders_DEFINITIONS}
-        ${SharemindLibConfiguration_DEFINITIONS}
-        ${SharemindLibEmulatorProtocols_DEFINITIONS}
-        ${SharemindLibExecutionModelEvaluator_DEFINITIONS}
-        ${SharemindLibExecutionProfiler_DEFINITIONS}
-        ${SharemindPdkHeaders_DEFINITIONS}
-    LINK_LIBRARIES
-        ${LogHard_LIBRARIES}
-        ${SharemindCHeaders_LIBRARIES}
-        ${SharemindCxxHeaders_LIBRARIES}
-        ${SharemindLibConfiguration_LIBRARIES}
-        ${SharemindLibExecutionModelEvaluator_LIBRARIES}
-        ${SharemindLibExecutionProfiler_LIBRARIES}
-        ${SharemindPdkHeaders_LIBRARIES}
 )
+TARGET_LINK_LIBRARIES(ModAbyEmu
+    PRIVATE
+        Boost::boost
+        LogHard::LogHard
+        Sharemind::CHeaders
+        Sharemind::CxxHeaders
+        Sharemind::LibConfiguration
+        Sharemind::LibEmulatorProtocols
+        Sharemind::LibExecutionModelEvaluator
+        Sharemind::LibExecutionProfiler
+        Sharemind::ModuleApis
+        Sharemind::PdkHeaders
+    )
 
 FILE(GLOB_RECURSE SharemindModAbyEmu_DEBUG_FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/debug_files/*.cfg")
@@ -107,10 +93,10 @@ SharemindAddComponentPackage("lib"
     DESCRIPTION "Sharemind ABY emulation module"
     DEB_SECTION "libs"
     DEB_DEPENDS
-        "libloghard (>= 0.3.0)"
-        "libsharemind-configuration (>= 0.2.0)"
-        "libsharemind-executionmodelevaluator (>= 0.2.0)"
-        "libsharemind-executionprofiler (>= 0.2.0)"
+        "libloghard (>= 0.5.0)"
+        "libsharemind-configuration (>= 0.5.0)"
+        "libsharemind-executionmodelevaluator (>= 0.3.0)"
+        "libsharemind-executionprofiler (>= 0.4.0)"
         "libstdc++6 (>= 4.8.0)"
         "libc6 (>= 2.19)"
     DEB_EXTRA_CONTROL_FILES
